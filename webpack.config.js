@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   mode: process.env.NODE_ENV,
@@ -49,10 +51,11 @@ const config = {
     ]
   },
   plugins: [
+    new webpack.ProgressPlugin(),
     new StylelintPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    })
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
+    new HtmlWebpackPlugin({ template: './src/index.html' })
   ],
 };
 

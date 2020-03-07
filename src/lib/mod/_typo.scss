@@ -4,5 +4,44 @@ h3,
 h4,
 h5,
 h6 {
-  color: $heading;
+  /* color: $heading; */
+  color: #000;
+}
+
+/* temporary style */
+html,
+body {
+  color: $base-font-color;
+  font: $base-font;
+  -webkit-font-smoothing: antialiased;
+  line-height: $base-line-height;
+  text-rendering: optimizeLegibility;
+}
+/*- end temporary style */
+
+/* container */
+%container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 900px; /* @todo vars */
+}
+
+main,
+nav ul {
+  @extend %container;
+}
+
+/* nav element */
+nav {
+  a {
+    font-size: $nav-font-size;
+  }
+}
+
+/* header */
+header[role='banner'] {
+  h1 {
+    font-size: 4rem;
+  }
 }

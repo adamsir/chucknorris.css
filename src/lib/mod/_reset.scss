@@ -264,6 +264,15 @@ textarea {
 }
 
 /**
+ * Remove the default the margin, padding and list style.
+ */
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/**
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */

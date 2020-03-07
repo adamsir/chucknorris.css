@@ -1,1 +1,26 @@
-$heading: #00f !default;
+/* Functions @todo standalone module */
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) and unit($number) == 'px' {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/* THEME */
+$theme-typo-size: 18px !default;
+$theme-font-color: #000 !default;
+$theme-font-family: 'Roboto', sans-serif !default;
+
+
+/* CORE */
+$base-typo-unit: unit($theme-typo-size);
+$base-typo-size: strip-unit($theme-typo-size);
+$base-font-size: $base-typo-size#{$base-typo-unit};
+$base-font-color: $theme-font-color;
+$base-font-family: $theme-font-family;
+$base-line-height: 1 / (100/$base-typo-size) + 1;
+$base-font: 400 $base-font-size $base-font-family;
+
+/* nav element */
+$nav-font-size: #{$base-typo-size / 1.1425}px;

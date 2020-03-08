@@ -1,5 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
+const WebpackBar = require('webpackbar');
 const pkg = require('./package.json');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
@@ -9,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   mode: process.env.NODE_ENV,
   entry: './src/lib/main.scss',
+  stats: 'errors-only',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js'
@@ -48,7 +50,7 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.ProgressPlugin(),
+    new WebpackBar(),
     new StylelintPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: './src/index.html' }),

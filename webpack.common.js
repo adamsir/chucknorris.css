@@ -1,20 +1,14 @@
-const path = require('path');
-const webpack = require('webpack');
-const WebpackBar = require('webpackbar');
 const pkg = require('./package.json');
+const path = require('path');
+const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  mode: process.env.NODE_ENV,
   entry: './src/lib/main.scss',
   stats: 'errors-only',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js'
-  },
   module: {
     rules: [
       {
@@ -56,6 +50,10 @@ const config = {
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new MiniCssExtractPlugin({ filename: `${pkg.name}.min.css` }),
   ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[hash].js'
+  }
 };
 
 module.exports = config;

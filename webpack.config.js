@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const pkg = require('./package.json');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -7,10 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   mode: process.env.NODE_ENV,
-  entry: {
-    js: './src/index.js',
-    css: './src/lib/main.scss'
-  },
+  entry: './src/lib/main.scss',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js'
@@ -20,7 +18,7 @@ const config = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -28,9 +26,8 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader',
-          MiniCssExtractPlugin.loader
+          MiniCssExtractPlugin.loader,
+          'css-loader'
         ]
       },
       {
@@ -54,8 +51,8 @@ const config = {
     new webpack.ProgressPlugin(),
     new StylelintPlugin(),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: '[name].css' }),
-    new HtmlWebpackPlugin({ template: './src/index.html' })
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new MiniCssExtractPlugin({ filename: `${pkg.name}.min.css` }),
   ],
 };
 

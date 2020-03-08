@@ -1,2 +1,2 @@
 # chucknorris.css
-Chuck Norris doesn't need CSS framework to have a style. CSS frameworks needs Chuck Norris.
+Chuck Norris doesn't need CSS framework to have a style. Chuck Norris is the framework.

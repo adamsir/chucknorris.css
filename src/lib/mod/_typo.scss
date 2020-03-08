@@ -20,9 +20,17 @@ body {
 /*- end temporary style */
 
 /* container */
-%container {
+%layout-column {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+}
+%layout-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+%container {
   margin: auto;
   max-width: 900px; /* @todo vars */
 }
@@ -32,8 +40,28 @@ nav ul {
   @extend %container;
 }
 
+/* main element */
+main {
+  div {
+    width: 100%;
+  }
+
+  div,
+  div[role='row'] {
+    @extend %layout-row;
+  }
+  
+  div[role='column'] {
+    @extend %layout-column;
+  }
+}
+
 /* nav element */
 nav {
+  ul {
+    @extend %layout-column;
+  }
+
   a {
     font-size: $nav-font-size;
   }
